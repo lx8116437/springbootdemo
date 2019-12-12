@@ -73,7 +73,6 @@ public class HelloController {
 
     @RequestMapping("queryUser")
     public List<ViewUser> queryUser(){
-//        ViewUser u = new ViewUser();
         List<ViewUser> u = userDao.queryViewUser();
         return u;
     }
