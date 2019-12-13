@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.demo.dao.MybatisUserDao" >
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.User" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="user_Name" property="userName" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="DOUBLE" />
+<!--        <result column="sex" property="userSex" javaType="com.neo.enums.UserSexEnum"/>-->
+        <result column="email" property="email" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, user_Name, sex, email
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.entity.User" >
+        INSERT INTO
+        user
+        (userName,sex,email)
+        VALUES
+        (#{userName}, #{sex}, #{email})
+    </insert>
+
+    <update id="update" parameterType="com.example.demo.entity.User" >
+        UPDATE
+        user
+        SET
+        <if test="userName != null">user_Name = #{userName},</if>
+        <if test="sex != null">sex = #{sex}</if>
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        user
+        WHERE
+        id =#{id}
+    </delete>
+
+</mapper>
