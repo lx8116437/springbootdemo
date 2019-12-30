@@ -18,7 +18,8 @@ public class SchedulerTask {
      * 一种是 fixedRate = 6000，
      * 两种都表示每隔六秒打印一下内容
      */
-    @Scheduled(cron="*/6 * * * * ?")
+    //注释解开就可以使用了
+//    @Scheduled(cron="*/6 * * * * ?")
     private void process(){
         System.out.println("每过6秒count增加1,当前count次数:" + (count++));
     }
@@ -30,7 +31,8 @@ public class SchedulerTask {
      *
      * @Scheduled(initialDelay=1000, fixedRate=6000) ：第一次延迟1秒后执行，之后按fixedRate的规则每6秒执行一次
      */
-    @Scheduled(fixedRate = 6000)
+    //注释解开就可以使用了
+//    @Scheduled(fixedRate = 6000)
     public void reportCurrentTime() {
         System.out.println("现在时间：" + dateFormat.format(new Date()));
     }
